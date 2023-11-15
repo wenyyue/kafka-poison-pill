@@ -12,7 +12,6 @@ import java.io.ByteArrayOutputStream;
 import java.util.Map;
 
 public class AvroSerializer<T extends SpecificRecordBase> implements Serializer<T> {
-
     @Override
     public void configure(Map<String, ?> configs, boolean isKey) {
         // do nothing

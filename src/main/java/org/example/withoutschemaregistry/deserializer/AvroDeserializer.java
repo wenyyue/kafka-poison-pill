@@ -20,9 +20,7 @@ public class AvroDeserializer<T extends SpecificRecordBase> implements Deseriali
     @Override
     public T deserialize(String topic, byte[] bytes) {
         T returnObject = null;
-
         try {
-
             if (bytes != null) {
                 DatumReader<GenericRecord> datumReader = new SpecificDatumReader<>(SimpleMessage.class.newInstance().getSchema());
                 Decoder decoder = DecoderFactory.get().binaryDecoder(bytes, null);
@@ -31,7 +29,6 @@ public class AvroDeserializer<T extends SpecificRecordBase> implements Deseriali
         } catch (Exception e) {
             System.out.println("Unable to Deserialize bytes[] " + e);
         }
-
         return returnObject;
     }
 

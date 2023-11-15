@@ -8,10 +8,10 @@ import org.example.avro.SimpleMessage;
 
 import java.util.Properties;
 
-public class KfkProducer {
+public class ProducerWithRegistry {
     private final KafkaProducer<String, SimpleMessage> kafkaProducer;
 
-    public KfkProducer() {
+    public ProducerWithRegistry() {
         Properties props = new Properties();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -21,11 +21,7 @@ public class KfkProducer {
     }
 
     public void sendMessage(SimpleMessage message) {
-        kafkaProducer.send(new ProducerRecord<>("avro_test", message), new Callback() {
-            @Override
-            public void onCompletion(RecordMetadata metadata, Exception exception) {
-                System.out.println(metadata.toString());
-            }
-        });
+        kafkaProducer.send(new ProducerRecord<>("avro_test", message),
+                (metadata, exception) -> System.out.println(metadata.toString()));
     }
 }
