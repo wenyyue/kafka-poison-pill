@@ -23,3 +23,21 @@ public class App {
         consumer.startConsume();
     }
 }
+
+class TestA {
+    public void a() {
+        String a = "123";
+
+        try {
+            if ("123".equals(a)) {
+
+            }
+        } catch (Exception e) {
+            throw new IllegalArgumentException("");
+        }
+    }
+
+    public void b() {
+        a();
+    }
+}

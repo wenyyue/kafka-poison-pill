@@ -38,7 +38,7 @@ public class KfkConsumer {
                 ConsumerRecords<String, GenericRecord> records = consumer.poll(Duration.ofMillis(2000));
                 consume(records);
             } catch (Exception e) {
-                System.out.println("kafka consumer error: " + e.getMessage());
+                System.out.println("kafka consumer error: " + e.getMessage()  + "Exception: " + e);
             } finally {
                 consumer.commitSync();
             }
